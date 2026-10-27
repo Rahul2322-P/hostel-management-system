@@ -1,7 +1,6 @@
 version: '3.8'
 
 services:
-  # 1. MySQL Database Service
   mysql:
     image: mysql:8.0
     container_name: hostel-mysql
@@ -10,7 +9,7 @@ services:
       MYSQL_DATABASE: hostel_db
       MYSQL_ROOT_PASSWORD: root
     ports:
-      - "3307:3306" # Maps 3307 on host to avoid port 3306 collision with local Windows MySQL
+      - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
@@ -22,7 +21,6 @@ services:
       retries: 5
       start_period: 15s
 
-  # 2. Spring Boot 3 Backend Service
   backend:
     build:
       context: ./backend
@@ -38,14 +36,13 @@ services:
       DB_PASSWORD: root
       PORT: 8080
     ports:
-      - "8082:8080" # Exposed on port 8082 to avoid host port 8080 collision
+      - "8082:8080"
     networks:
       - hostel-network
     depends_on:
       mysql:
         condition: service_healthy
 
-  # 3. React + Vite + Nginx Frontend Service
   frontend:
     build:
       context: ./frontend

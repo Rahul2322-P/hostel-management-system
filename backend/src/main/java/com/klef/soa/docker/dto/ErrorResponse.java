@@ -6,9 +6,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.time.LocalDateTime;
 import java.util.Map;
 
-/**
- * Standard error response envelope
- */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Schema(description = "Standardized error structure")
 public class ErrorResponse {

@@ -1,9 +1,6 @@
-# Operating System Files
 .DS_Store
 Thumbs.db
 *.lnk
-
-# IDE and Editor Files
 .idea/
 *.iml
 .vscode/
@@ -12,18 +9,12 @@ Thumbs.db
 *.njsproj
 *.sln
 *.sw?
-
-# Maven Build Artifacts
 backend/target/
 *.class
-
-# Node / React Build Artifacts
 frontend/node_modules/
 frontend/dist/
 *.log
 npm-debug.log*
-
-# Database Local Storage & Overrides
 backend/data/
 *.db
 .env.local

@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+  workflow_dispatch:
 
 jobs:
   build-and-push:
@@ -24,7 +24,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # Build and Push Backend Image
       - name: Build and Push Backend Image
         uses: docker/build-push-action@v5
         with:
@@ -35,7 +34,6 @@ jobs:
             ${{ secrets.DOCKERHUB_USERNAME }}/docker-backend-P2400032050:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/docker-backend-P2400032050:${{ github.sha }}
 
-      # Build and Push Frontend Image
       - name: Build and Push Frontend Image
         uses: docker/build-push-action@v5
         with:

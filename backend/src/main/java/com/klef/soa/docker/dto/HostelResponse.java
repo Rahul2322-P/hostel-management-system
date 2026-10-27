@@ -2,9 +2,6 @@ package com.klef.soa.docker.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-/**
- * Response DTO returned to client containing generated ID
- */
 @Schema(description = "Hostel details returned by the API")
 public class HostelResponse {
 

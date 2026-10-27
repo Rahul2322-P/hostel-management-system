@@ -12,16 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Service Implementation providing business logic for Hostel Management
- */
 @Service
 @Transactional
 public class HostelServiceImpl implements HostelService {
 
     private final HostelRepository hostelRepository;
 
-    // Constructor-based dependency injection
     public HostelServiceImpl(HostelRepository hostelRepository) {
         this.hostelRepository = hostelRepository;
     }
@@ -45,7 +41,6 @@ public class HostelServiceImpl implements HostelService {
 
     @Override
     public HostelResponse createHostel(HostelRequest request) {
-        // Map request DTO to Entity (ID is NOT set; database generates it automatically)
         Hostel hostel = new Hostel();
         hostel.setHostelName(request.getHostelName().trim());
         hostel.setLocation(request.getLocation().trim());
@@ -63,7 +58,6 @@ public class HostelServiceImpl implements HostelService {
         hostelRepository.delete(hostel);
     }
 
-    // Helper mapper from Entity to Response DTO
     private HostelResponse mapToResponse(Hostel hostel) {
         return new HostelResponse(
                 hostel.getId(),

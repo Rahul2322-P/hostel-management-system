@@ -6,7 +6,6 @@ const AlertMessage = ({ alert, onDismiss }) => {
   const isSuccess = alert.type === 'success';
   const isDanger = alert.type === 'danger' || alert.type === 'error';
   const isWarning = alert.type === 'warning';
-  const isInfo = alert.type === 'info';
 
   const alertClass = isSuccess
     ? 'alert-success border-success'

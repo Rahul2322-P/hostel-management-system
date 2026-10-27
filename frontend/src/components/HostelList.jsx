@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 const HostelList = ({ hostels, loading, onRequestDelete, onRefresh }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Filter hostels based on search query
   const filteredHostels = hostels.filter((hostel) => {
     const term = searchTerm.toLowerCase();
     const nameMatch = hostel.hostelName?.toLowerCase().includes(term);
@@ -15,7 +14,6 @@ const HostelList = ({ hostels, loading, onRequestDelete, onRefresh }) => {
 
   return (
     <div className="card custom-card">
-      {/* Header with Title and Search/Refresh controls */}
       <div className="card-header card-header-custom">
         <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
           <div className="d-flex align-items-center gap-2">
@@ -62,7 +60,6 @@ const HostelList = ({ hostels, loading, onRequestDelete, onRefresh }) => {
       </div>
 
       <div className="card-body p-0">
-        {/* Loading Spinner State */}
         {loading && (
           <div className="text-center py-5">
             <div className="spinner-border text-primary" role="status" style={{ width: '3rem', height: '3rem' }}>
@@ -72,7 +69,6 @@ const HostelList = ({ hostels, loading, onRequestDelete, onRefresh }) => {
           </div>
         )}
 
-        {/* Empty State when no hostels exist */}
         {!loading && hostels.length === 0 && (
           <div className="p-4">
             <div className="empty-state">
@@ -87,7 +83,6 @@ const HostelList = ({ hostels, loading, onRequestDelete, onRefresh }) => {
           </div>
         )}
 
-        {/* Empty Search Filter State */}
         {!loading && hostels.length > 0 && filteredHostels.length === 0 && (
           <div className="text-center py-5">
             <i className="bi bi-search text-muted fs-1 mb-2 d-block"></i>
@@ -99,7 +94,6 @@ const HostelList = ({ hostels, loading, onRequestDelete, onRefresh }) => {
           </div>
         )}
 
-        {/* Table View (Desktop & Tablet) */}
         {!loading && filteredHostels.length > 0 && (
           <>
             <div className="table-responsive d-none d-md-block">
@@ -161,7 +155,6 @@ const HostelList = ({ hostels, loading, onRequestDelete, onRefresh }) => {
               </table>
             </div>
 
-            {/* Responsive Card Layout (Mobile) */}
             <div className="d-md-none p-3">
               <div className="row g-3">
                 {filteredHostels.map((hostel) => (

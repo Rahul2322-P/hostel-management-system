@@ -5,9 +5,6 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-/**
- * Hostel Entity representing the persistent database table
- */
 @Entity
 @Table(name = "hostels")
 public class Hostel {
@@ -51,7 +48,6 @@ public class Hostel {
         this.wardenName = wardenName;
     }
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }

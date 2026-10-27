@@ -5,13 +5,11 @@ const DeleteModal = ({ hostel, onConfirm, onCancel, deleting }) => {
 
   return (
     <>
-      {/* Modal Backdrop */}
       <div
         className="modal-backdrop fade show"
         style={{ zIndex: 1050, backgroundColor: 'rgba(0,0,0,0.5)' }}
       ></div>
 
-      {/* Modal Dialog */}
       <div
         className="modal fade show d-block"
         tabIndex="-1"
@@ -20,7 +18,6 @@ const DeleteModal = ({ hostel, onConfirm, onCancel, deleting }) => {
       >
         <div className="modal-dialog modal-dialog-centered" role="document">
           <div className="modal-content border-0 shadow-lg" style={{ borderRadius: '14px' }}>
-            {/* Modal Header */}
             <div className="modal-header bg-danger text-white border-0" style={{ borderTopLeftRadius: '14px', borderTopRightRadius: '14px' }}>
               <div className="d-flex align-items-center gap-2">
                 <i className="bi bi-exclamation-triangle-fill fs-4"></i>
@@ -35,7 +32,6 @@ const DeleteModal = ({ hostel, onConfirm, onCancel, deleting }) => {
               ></button>
             </div>
 
-            {/* Modal Body */}
             <div className="modal-body p-4">
               <p className="lead fs-6 mb-3">
                 Are you sure you want to permanently delete the following hostel record?
@@ -70,7 +66,6 @@ const DeleteModal = ({ hostel, onConfirm, onCancel, deleting }) => {
               </div>
             </div>
 
-            {/* Modal Footer */}
             <div className="modal-footer border-0 bg-light p-3" style={{ borderBottomLeftRadius: '14px', borderBottomRightRadius: '14px' }}>
               <button
                 type="button"

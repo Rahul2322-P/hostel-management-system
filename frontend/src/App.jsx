@@ -7,7 +7,6 @@ import DeleteModal from './components/DeleteModal';
 import AlertMessage from './components/AlertMessage';
 import hostelService from './services/hostelService';
 
-// Sample preview data for Phase 1 UI testing when backend is not yet started
 const DEMO_HOSTELS = [
   {
     id: 101,
@@ -42,7 +41,6 @@ function App() {
   const [backendOnline, setBackendOnline] = useState(false);
   const [demoMode, setDemoMode] = useState(false);
 
-  // Fetch hostels from backend REST API
   const fetchHostels = useCallback(async (isSilent = false) => {
     if (demoMode) return;
 
@@ -52,7 +50,6 @@ function App() {
       setHostels(Array.isArray(data) ? data : []);
       setBackendOnline(true);
       if (!isSilent) {
-        // Clear old connection errors if connection restored
         if (alert?.type === 'danger' && alert?.message?.includes('Cannot connect')) {
           setAlert(null);
         }
@@ -70,17 +67,14 @@ function App() {
     }
   }, [demoMode, alert]);
 
-  // Initial load on component mount
   useEffect(() => {
     fetchHostels();
   }, [fetchHostels]);
 
-  // Handle adding a new hostel
   const handleAddHostel = async (formData) => {
     setSubmitting(true);
     setAlert(null);
 
-    // If running in demo mode for Phase 1 UI testing
     if (demoMode) {
       setTimeout(() => {
         const newRecord = {
@@ -103,7 +97,6 @@ function App() {
         type: 'success',
         message: `Hostel "${createdRecord.hostelName}" registered successfully with generated ID #${createdRecord.id}!`,
       });
-      // Refresh list to display new record
       await fetchHostels(true);
       return true;
     } catch (err) {
@@ -117,12 +110,10 @@ function App() {
     }
   };
 
-  // Open delete confirmation modal
   const handleRequestDelete = (hostel) => {
     setHostelToDelete(hostel);
   };
 
-  // Confirm delete action
   const handleConfirmDelete = async (id) => {
     setDeleting(true);
     setAlert(null);
@@ -147,7 +138,6 @@ function App() {
         message: `Hostel #${id} has been permanently deleted.`,
       });
       setHostelToDelete(null);
-      // Refresh list
       await fetchHostels(true);
     } catch (err) {
       setAlert({
@@ -160,7 +150,6 @@ function App() {
     }
   };
 
-  // Toggle demo mode for Phase 1 verification before Phase 2 backend is running
   const toggleDemoMode = () => {
     if (!demoMode) {
       setDemoMode(true);
@@ -179,19 +168,15 @@ function App() {
 
   return (
     <div className="d-flex flex-column min-vh-100">
-      {/* 1. Header Navigation Bar */}
       <Navbar
         totalHostels={hostels.length}
         onRefresh={() => fetchHostels(false)}
         loading={loading}
       />
 
-      {/* Main Content Container */}
       <main className="container-fluid px-4 py-4 flex-grow-1">
-        {/* Banner Alert Messages */}
         <AlertMessage alert={alert} onDismiss={() => setAlert(null)} />
 
-        {/* Phase 1 Helper Notice & Demo Toggle */}
         <div className="card border-0 bg-white shadow-sm p-3 mb-4 rounded-3 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
           <div className="d-flex align-items-center gap-3">
             <span className={`badge ${backendOnline ? 'bg-success' : demoMode ? 'bg-info' : 'bg-secondary'} p-2 px-3 fs-6 rounded-pill d-flex align-items-center gap-2`}>
@@ -217,17 +202,13 @@ function App() {
           </div>
         </div>
 
-        {/* 2. Dashboard Statistics Summary */}
         <Dashboard hostels={hostels} backendOnline={backendOnline} />
 
-        {/* 3 & 4. Main Two-Column Layout (Form on Left, Hostels List on Right) */}
         <div className="row g-4">
-          {/* Add Hostel Form Column */}
           <div className="col-12 col-lg-5 col-xl-4">
             <HostelForm onAddHostel={handleAddHostel} submitting={submitting} />
           </div>
 
-          {/* View Hostels Records Column */}
           <div className="col-12 col-lg-7 col-xl-8">
             <HostelList
               hostels={hostels}
@@ -239,7 +220,6 @@ function App() {
         </div>
       </main>
 
-      {/* Delete Confirmation Modal */}
       <DeleteModal
         hostel={hostelToDelete}
         onConfirm={handleConfirmDelete}
@@ -247,7 +227,6 @@ function App() {
         deleting={deleting}
       />
 
-      {/* Footer with Student Academic Details */}
       <footer className="py-3 px-4 text-center text-muted small">
         <div className="container-fluid">
           <span>

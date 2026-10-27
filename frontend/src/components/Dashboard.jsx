@@ -8,7 +8,6 @@ const Dashboard = ({ hostels, backendOnline }) => {
 
   return (
     <div className="row g-3 mb-4">
-      {/* Total Hostels Metric Card */}
       <div className="col-12 col-sm-6 col-xl-3">
         <div className="card stat-card bg-primary text-white h-100">
           <div className="card-body d-flex align-items-center justify-content-between p-3">
@@ -24,7 +23,6 @@ const Dashboard = ({ hostels, backendOnline }) => {
         </div>
       </div>
 
-      {/* Total Rooms Metric Card */}
       <div className="col-12 col-sm-6 col-xl-3">
         <div className="card stat-card bg-success text-white h-100">
           <div className="card-body d-flex align-items-center justify-content-between p-3">
@@ -40,7 +38,6 @@ const Dashboard = ({ hostels, backendOnline }) => {
         </div>
       </div>
 
-      {/* Average Rooms per Hostel Metric Card */}
       <div className="col-12 col-sm-6 col-xl-3">
         <div className="card stat-card bg-info text-white h-100">
           <div className="card-body d-flex align-items-center justify-content-between p-3">
@@ -56,7 +53,6 @@ const Dashboard = ({ hostels, backendOnline }) => {
         </div>
       </div>
 
-      {/* Active Wardens Metric Card */}
       <div className="col-12 col-sm-6 col-xl-3">
         <div className="card stat-card bg-secondary text-white h-100">
           <div className="card-body d-flex align-items-center justify-content-between p-3">
