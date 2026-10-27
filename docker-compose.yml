@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  # 1. MySQL Database Service
+  mysql:
+    image: mysql:8.0
+    container_name: hostel-mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: hostel_db
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306" # Maps 3307 on host to avoid port 3306 collision with local Windows MySQL
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - hostel-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  # 2. Spring Boot 3 Backend Service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: ${DOCKERHUB_USERNAME:-rahul8352}/docker-backend-P2400032050:latest
+    container_name: hostel-backend
+    restart: on-failure
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: hostel_db
+      DB_USERNAME: root
+      DB_PASSWORD: root
+      PORT: 8080
+    ports:
+      - "8082:8080" # Exposed on port 8082 to avoid host port 8080 collision
+    networks:
+      - hostel-network
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  # 3. React + Vite + Nginx Frontend Service
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: ${DOCKERHUB_USERNAME:-rahul8352}/docker-frontend-P2400032050:latest
+    container_name: hostel-frontend
+    restart: always
+    ports:
+      - "80:80"
+    networks:
+      - hostel-network
+    depends_on:
+      - backend
+
+volumes:
+  mysql_data:
+    name: hostel_mysql_data
+
+networks:
+  hostel-network:
+    name: hostel-network
+    driver: bridge
