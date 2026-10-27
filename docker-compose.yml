@@ -25,7 +25,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    image: ${DOCKERHUB_USERNAME:-rahul8352}/docker-backend-P2400032050:latest
+    image: ${DOCKERHUB_USERNAME:-rahul8352}/docker-backend-p2400032050:latest
     container_name: hostel-backend
     restart: on-failure
     environment:
@@ -47,7 +47,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    image: ${DOCKERHUB_USERNAME:-rahul8352}/docker-frontend-P2400032050:latest
+    image: ${DOCKERHUB_USERNAME:-rahul8352}/docker-frontend-p2400032050:latest
     container_name: hostel-frontend
     restart: always
     ports:
