@@ -37,9 +37,8 @@ jobs:
           file: ./backend/Dockerfile
           push: true
           tags: |
-            ${{ steps.prep.outputs.docker_user }}/docker-backend-p2400032050:latest
-            ${{ steps.prep.outputs.docker_user }}/docker-backend-p2400032050:${{ github.sha }}
-            ${{ steps.prep.outputs.docker_user }}/docker-backend-p2400032050:P2400032050
+            ${{ steps.prep.outputs.docker_user }}/docker-backend-2400032050:latest
+            ${{ steps.prep.outputs.docker_user }}/docker-backend-2400032050:${{ github.sha }}
 
       - name: Build and Push Frontend Image
         uses: docker/build-push-action@v5
@@ -48,6 +47,5 @@ jobs:
           file: ./frontend/Dockerfile
           push: true
           tags: |
-            ${{ steps.prep.outputs.docker_user }}/docker-frontend-p2400032050:latest
-            ${{ steps.prep.outputs.docker_user }}/docker-frontend-p2400032050:${{ github.sha }}
-            ${{ steps.prep.outputs.docker_user }}/docker-frontend-p2400032050:P2400032050
+            ${{ steps.prep.outputs.docker_user }}/docker-frontend-2400032050:latest
+            ${{ steps.prep.outputs.docker_user }}/docker-frontend-2400032050:${{ github.sha }}

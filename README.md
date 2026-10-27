@@ -155,5 +155,5 @@ The automated workflow located at `.github/workflows/docker-publish.yml` trigger
    - `DOCKERHUB_USERNAME`
    - `DOCKERHUB_TOKEN`
 4. Builds and publishes:
-   - `<username>/docker-frontend-P2400032050:latest`
-   - `<username>/docker-backend-P2400032050:latest`
+   - `<username>/docker-frontend-2400032050:latest`
+   - `<username>/docker-backend-2400032050:latest`
